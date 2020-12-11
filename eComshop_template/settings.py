@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'storefront',
     'staff',
     'store',
+    'crispy_forms',
+    'users',
 ]
 
 MIDDLEWARE = [
