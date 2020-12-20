@@ -131,3 +131,7 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media/')
+
+# Default login view
+
+LOGIN_URL = '/login/'

@@ -29,10 +29,13 @@
                                 <p class="card-text">{{ product.description }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        <a href="{% url 'product-detail' product.id %}" class="btn btn-sm btn-outline-secondary">View</a>
+                                        {% if product.user.id == request.user.id %}
+                                            <a href="{% url 'product-update' product.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            <a href="{% url 'product-delete' product.id %}" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                        {% endif %}
                                     </div>
-                                    <small class="text-muted">9 mins</small>
+                                    <small class="text-muted">{{ product.title }}</small>
                                 </div>
                             </div>
                         </div>

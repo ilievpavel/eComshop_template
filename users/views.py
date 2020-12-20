@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
+from users.decorators import user_required
 from users.forms import SignUpForm, UserProfileForm
 from users.models import UserProfile
 
@@ -26,33 +27,13 @@ def register_user(request):
             profile.save()
 
             login(request, user)
-            return redirect('current user profile')
+            return redirect('current user profile', user.id)
 
         context = {
             'form': form,
         }
 
         return render(request, 'users/registration_form.html', context)
-
-
-def user_profile(request, pk=None):
-    user = request.user if pk is None else User.objects.get(pk=pk)
-    if request.method == 'GET':
-        context = {
-            'profile_user': user,
-            'profile': user.userprofile,
-            # 'pets': user.userprofile.pet_set.all(),
-            'form': UserProfileForm(),
-        }
-
-        return render(request, 'users/user_profile.html', context)
-    else:
-        form = UserProfileForm(request.POST, request.FILES, instance=user.userprofile)
-        if form.is_valid():
-            form.save()
-            return redirect('current user profile')
-
-        return redirect('current user profile')
 
 
 def login_user(request):
@@ -78,3 +59,22 @@ def logout_user(request):
     logout(request)
     messages.info(request, 'You have successfully logged out.')
     return redirect('home')
+
+
+def user_profile(request, pk=None):
+    user = request.user if pk is None else User.objects.get(pk=pk)
+    if request.method == 'GET':
+        context = {
+            'profile_user': user,
+            'profile': user.userprofile,
+            'form': UserProfileForm(),
+        }
+
+        return render(request, 'users/user_profile.html', context)
+    else:
+        form = UserProfileForm(request.POST, request.FILES, instance=user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('current user profile')
+
+        return redirect('current user profile')

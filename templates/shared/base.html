@@ -18,6 +18,18 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/album.css' %}" rel="stylesheet">
+      <!-- Roboto Font -->
+    <link rel="stylesheet" href="{% static 'css/css.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/mdb-pro.css' %}">
+    <!-- Material Design Bootstrap Ecommerce -->
+    <link rel="stylesheet" href="{% static 'css/mdb.css' %}">
+    <!-- Profile styles -->
+    <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 </head>
 
 <body>
@@ -58,7 +70,7 @@
             <ul class="navbar-nav mr-0">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'current user profile' %}">
+                        <a class="nav-link" href="{% url 'current user profile' user.id %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                  class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -91,7 +103,7 @@
 
 </main>
 
-<footer class="text-muted fixed-bottom bg-dark">
+<footer class="text-muted fixed-bottom bg-dark ">
     <div class="container">
         <p class="float-right">
             <a href="#">Back to top</a>
@@ -112,6 +124,12 @@
 <script src="{% static 'js/popper.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/holder.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb_002.js' %}"></script>
+  <!-- MDB Ecommerce JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.js' %}"></script>
 
 
 <svg xmlns="http://www.w3.org/2000/svg" width="288" height="225" viewBox="0 0 288 225" preserveAspectRatio="none"
